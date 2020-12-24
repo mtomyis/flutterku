@@ -20,7 +20,6 @@ void main() {
 //     child: Text("Hello Word"),
 //   ),
 // ),
-
 // body: Column(
 //   mainAxisAlignment: MainAxisAlignment.start,
 //   crossAxisAlignment: CrossAxisAlignment.end,
@@ -41,7 +40,6 @@ void main() {
 //     )
 //   ],
 // ),
-
 //         body: Container(
 //           color: Colors.red,
 //           margin: EdgeInsets.fromLTRB(8, 16, 8, 8),
