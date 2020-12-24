@@ -58,46 +58,86 @@ void main() {
 //     );
 //   }
 // }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   int number = 0;
+
+//   void tekanTombol() {
+//     setState(() {
+//       number = number + 1;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("Stateful Widget Demo"),
+//         ),
+//         body: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Text(
+//                 number.toString(),
+//                 style: TextStyle(fontSize: 10 + number.toDouble()),
+//               ),
+//               RaisedButton(
+//                 // shape: RoundedRectangleBorder(
+//                 //     borderRadius: BorderRadius.circular(18.0),
+//                 //     side: BorderSide(color: Colors.red)),
+//                 onPressed: tekanTombol,
+//                 child: Text("Tambah Bilangan"),
+//               )
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  int number = 0;
+  List<Widget> widgets = [];
 
-  void tekanTombol() {
-    setState(() {
-      number = number + 1;
-    });
+  _MyAppState() {
+    for (var i = 0; i < 15; i++) {
+      // widgets
+    }
   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Stateful Widget Demo"),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          appBar: AppBar(
+            title: Text("List dan ListView"),
+          ),
+          body: ListView(
             children: [
-              Text(
-                number.toString(),
-                style: TextStyle(fontSize: 10 + number.toDouble()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  RaisedButton(onPressed: null, child: Text("Tambah")),
+                  RaisedButton(onPressed: null, child: Text("Hapus")),
+                ],
               ),
-              RaisedButton(
-                // shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(18.0),
-                //     side: BorderSide(color: Colors.red)),
-                onPressed: tekanTombol,
-                child: Text("Tambah Bilangan"),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: widgets,
               )
             ],
-          ),
-        ),
-      ),
+          )),
     );
   }
 }
