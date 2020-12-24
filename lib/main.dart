@@ -103,41 +103,89 @@ void main() {
 //   }
 // }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  List<Widget> widgets = [];
-
-  _MyAppState() {
-    for (var i = 0; i < 15; i++) {
-      // widgets
-    }
-  }
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text("List dan ListView"),
+        appBar: AppBar(
+          title: Text(
+            "Latihan FontStyle",
+            style: TextStyle(
+                fontFamily: "vermin",
+                fontWeight: FontWeight.w700,
+                fontSize: 20),
           ),
-          body: ListView(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  RaisedButton(onPressed: null, child: Text("Tambah")),
-                  RaisedButton(onPressed: null, child: Text("Hapus")),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: widgets,
-              )
-            ],
-          )),
+        ),
+        body: Center(
+          child: Text(
+            "Selamat Datang",
+            style: TextStyle(
+              fontFamily: "DancingScript",
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   List<Widget> widgets = [];
+//   int counter = 1;
+
+// _MyAppState() {
+//   for (var i = 0; i < 15; i++) {
+//     widgets.add(Text(
+//       "Data ke" + i.toString(),
+//       style: TextStyle(fontSize: 35 + i.toDouble()),
+//     ));
+//   }
+// }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//           appBar: AppBar(
+//             title: Text("List dan ListView"),
+//           ),
+//           body: ListView(
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   RaisedButton(
+//                       onPressed: () {
+//                         setState(() {
+//                           widgets.add(Text("Data ke -" + counter.toString()));
+//                           counter++;
+//                         });
+//                       },
+//                       child: Text("Tambah")),
+//                   RaisedButton(
+//                       onPressed: () {
+//                         setState(() {
+//                           widgets.removeLast();
+//                           counter--;
+//                         });
+//                       },
+//                       child: Text("Hapus")),
+//                 ],
+//               ),
+//               Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: widgets,
+//               )
+//             ],
+//           )),
+//     );
+//   }
+// }
