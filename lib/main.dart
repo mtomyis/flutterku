@@ -192,32 +192,172 @@ void main() {
 //   }
 // }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
 
-Random random = new Random();
+// Random random = new Random();
 
-class _MyAppState extends State<MyApp> {
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(title: Text("Animated Container")),
+//         body: Center(
+//           child: GestureDetector(
+//             onTap: () {
+//               setState(() {});
+//             },
+//             child: AnimatedContainer(
+//               duration: Duration(seconds: 1),
+//               color: Color.fromARGB(255, random.nextInt(256),
+//                   random.nextInt(256), random.nextInt(256)),
+//               width: 50.0 + random.nextInt(101),
+//               height: 50.0 + random.nextInt(101),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("Latihan Fleksibel Container"),
+//         ),
+//         body: Column(
+//           children: [
+//             Flexible(
+//               flex: 5,
+//               child: Row(
+//                 children: [
+//                   Flexible(
+//                     flex: 3,
+//                     child: Container(
+//                       color: Colors.green,
+//                     ),
+//                   ),
+//                   Flexible(
+//                     flex: 3,
+//                     child: Container(
+//                       color: Colors.red,
+//                     ),
+//                   ),
+//                   Flexible(
+//                     flex: 3,
+//                     child: Container(
+//                       color: Colors.blue,
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             ),
+//             Flexible(
+//               flex: 3,
+//               child: Container(
+//                 color: Colors.cyanAccent,
+//               ),
+//             ),
+//             Flexible(
+//               flex: 2,
+//               child: Container(
+//                 color: Colors.amberAccent,
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class MyApp extends StatelessWidget {
+  List<Widget> widget = [];
+
+  MyApp() {
+    for (var i = 0; i < 15; i++) {
+      widget.add(Text(
+        "ini adalah contoh data ke " + i.toString(),
+        style: TextStyle(fontSize: 30),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Animated Container")),
-        body: Center(
-          child: GestureDetector(
-            onTap: () {
-              setState(() {});
-            },
-            child: AnimatedContainer(
-              duration: Duration(seconds: 1),
-              color: Color.fromARGB(255, random.nextInt(256),
-                  random.nextInt(256), random.nextInt(256)),
-              width: 50.0 + random.nextInt(101),
-              height: 50.0 + random.nextInt(101),
+        appBar: AppBar(
+          title: Text("Latihan stack and align widget"),
+        ),
+        body: Stack(
+          children: [
+            //background
+            Column(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          color: Colors.white10,
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          color: Colors.black12,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          color: Colors.white10,
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          color: Colors.black12,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ),
+            ListView(
+              children: [
+                Column(
+                  children: widget,
+                )
+              ],
+            ),
+            Align(
+              alignment: Alignment(0.8, 0.6),
+              child: RaisedButton(
+                color: Colors.amber[200],
+                onPressed: null,
+                child: Text("Tambah Data"),
+              ),
+            )
+          ],
         ),
       ),
     );
