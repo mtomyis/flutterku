@@ -278,86 +278,167 @@ void main() {
 //   }
 // }
 
+// class MyApp extends StatelessWidget {
+//   List<Widget> widget = [];
+
+//   MyApp() {
+//     for (var i = 0; i < 15; i++) {
+//       widget.add(Text(
+//         "ini adalah contoh data ke " + i.toString(),
+//         style: TextStyle(fontSize: 30),
+//       ));
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("Latihan stack and align widget"),
+//         ),
+//         body: Stack(
+//           children: [
+//             //background
+//             Column(
+//               children: [
+//                 Flexible(
+//                   flex: 1,
+//                   child: Row(
+//                     children: [
+//                       Flexible(
+//                         flex: 1,
+//                         child: Container(
+//                           color: Colors.black12,
+//                         ),
+//                       ),
+//                       Flexible(
+//                         flex: 1,
+//                         child: Container(
+//                           color: Colors.white10,
+//                         ),
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//                 Flexible(
+//                   flex: 1,
+//                   child: Row(
+//                     children: [
+//                       Flexible(
+//                         flex: 1,
+//                         child: Container(
+//                           color: Colors.white10,
+//                         ),
+//                       ),
+//                       Flexible(
+//                         flex: 1,
+//                         child: Container(
+//                           color: Colors.black12,
+//                         ),
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             ListView(
+//               children: [
+//                 Container(
+//                   margin: EdgeInsets.fromLTRB(16, 8, 16, 8),
+//                   child: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: widget,
+//                   ),
+//                 )
+//               ],
+//             ),
+//             Align(
+//               alignment: Alignment(0.8, 0.9),
+//               child: RaisedButton(
+//                 color: Colors.amber[200],
+//                 onPressed: null,
+//                 child: Text("Tambah Data"),
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("Latihan Image Widget"),
+//         ),
+//         body: Center(
+//           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+//             Container(
+//               color: Colors.black38,
+//               width: 200,
+//               height: 200,
+//               padding: EdgeInsets.all(3),
+//               child: Image(
+//                 image: NetworkImage(
+//                     "https://variety.com/wp-content/uploads/2015/07/naruto_movie-lionsgate.jpg?w=681&h=383&crop=1"),
+//                 fit: BoxFit.contain,
+//                 repeat: ImageRepeat.repeat,
+//               ),
+//             ),
+//             Container(
+//               color: Colors.amberAccent,
+//               width: 200,
+//               height: 200,
+//               padding: EdgeInsets.all(3),
+//               child: Image(
+//                 image: AssetImage("images/background2.jpg"),
+//                 fit: BoxFit.contain,
+//                 repeat: ImageRepeat.repeat,
+//               ),
+//             ),
+//           ]),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 class MyApp extends StatelessWidget {
-  List<Widget> widget = [];
-
-  MyApp() {
-    for (var i = 0; i < 15; i++) {
-      widget.add(Text(
-        "ini adalah contoh data ke " + i.toString(),
-        style: TextStyle(fontSize: 30),
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Latihan stack and align widget"),
-        ),
-        body: Stack(
-          children: [
-            //background
-            Column(
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.white10,
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.black12,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.white10,
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.black12,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            ListView(
-              children: [
-                Column(
-                  children: widget,
-                )
-              ],
-            ),
-            Align(
-              alignment: Alignment(0.8, 0.6),
-              child: RaisedButton(
-                color: Colors.amber[200],
-                onPressed: null,
-                child: Text("Tambah Data"),
+        appBar: AppBar(title: Text("Latihan spacer")),
+        body: Center(
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Spacer(flex: 2),
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.blueGrey,
               ),
-            )
-          ],
+              Spacer(flex: 1),
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.greenAccent,
+              ),
+              Spacer(flex: 3),
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.redAccent,
+              ),
+              Spacer(flex: 1),
+            ],
+          ),
         ),
       ),
     );
