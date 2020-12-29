@@ -1,6 +1,7 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutterku/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -408,39 +409,48 @@ void main() {
 //   }
 // }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(title: Text("Latihan spacer")),
+//         body: Center(
+//           child: Row(
+//             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Spacer(flex: 2),
+//               Container(
+//                 width: 80,
+//                 height: 80,
+//                 color: Colors.blueGrey,
+//               ),
+//               Spacer(flex: 1),
+//               Container(
+//                 width: 80,
+//                 height: 80,
+//                 color: Colors.greenAccent,
+//               ),
+//               Spacer(flex: 3),
+//               Container(
+//                 width: 80,
+//                 height: 80,
+//                 color: Colors.redAccent,
+//               ),
+//               Spacer(flex: 1),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text("Latihan spacer")),
-        body: Center(
-          child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Spacer(flex: 2),
-              Container(
-                width: 80,
-                height: 80,
-                color: Colors.blueGrey,
-              ),
-              Spacer(flex: 1),
-              Container(
-                width: 80,
-                height: 80,
-                color: Colors.greenAccent,
-              ),
-              Spacer(flex: 3),
-              Container(
-                width: 80,
-                height: 80,
-                color: Colors.redAccent,
-              ),
-              Spacer(flex: 1),
-            ],
-          ),
-        ),
-      ),
+      home: LoginPage(),
     );
   }
 }
