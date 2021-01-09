@@ -446,11 +446,117 @@ void main() {
 //   }
 // }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: LoginPage(),
+//     );
+//   }
+// }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// TextEditingController controllerku = TextEditingController(text: "nilai awal");
+
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("Latihan Textfield"),
+//         ),
+//         body: Container(
+//           margin: EdgeInsets.all(20),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: [
+//               TextField(
+//                 onChanged: (isi) {
+//                   setState(() {});
+//                 },
+//                 controller: controllerku,
+//               ),
+//               Text(controllerku.text)
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: MainMediaQuery(),
+//     );
+//   }
+// }
+
+// class MainMediaQuery extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Latihan mediaquery"),
+//       ),
+//       body: (MediaQuery.of(context).orientation == Orientation.portrait)
+//           ? Column(
+//               children: generateContainers(),
+//             )
+//           : Row(
+//               children: generateContainers(),
+//             ),
+//     );
+//   }
+
+//   List<Widget> generateContainers() {
+//     return [
+//       Container(color: Colors.amberAccent, width: 100, height: 100),
+//       Container(color: Colors.red, width: 100, height: 100),
+//       Container(color: Colors.black12, width: 100, height: 100)
+//     ];
+//   }
+// }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(),
+      home: Scaffold(
+        appBar: AppBar(title: Text("Latihan Ink Button gradasi")),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              RaisedButton(
+                color: Colors.blueAccent,
+                child: Text("Raise"),
+                shape: StadiumBorder(),
+                onPressed: () {},
+              ),
+              Container(
+                width: 150,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                      colors: [Colors.pink, Colors.red],
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft),
+                ),
+                child: Material(),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
