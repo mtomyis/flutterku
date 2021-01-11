@@ -1,7 +1,10 @@
 // import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutterku/get_user_modal.dart';
 import 'package:flutterku/login_page.dart';
+import 'package:flutterku/post_result_modal.dart';
+import 'package:logger/logger.dart';
 
 void main() {
   runApp(MyApp());
@@ -525,33 +528,225 @@ void main() {
 //   }
 // }
 
-class MyApp extends StatelessWidget {
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(title: Text("Latihan Ink Button gradasi")),
+//         body: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: [
+//               RaisedButton(
+//                 color: Colors.blueAccent,
+//                 child: Text("Raise"),
+//                 shape: StadiumBorder(),
+//                 onPressed: () {},
+//               ),
+//               Container(
+//                 width: 150,
+//                 height: 40,
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(20),
+//                   gradient: LinearGradient(
+//                       colors: [Colors.pink, Colors.red],
+//                       begin: Alignment.topRight,
+//                       end: Alignment.bottomLeft),
+//                 ),
+//                 child: Material(),
+//               )
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Logger logger = Logger();
+  PostResult postResult = null;
+  UserResult userResult = null;
+
+  final myController_name = TextEditingController();
+  final myControllerjob = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Latihan Ink Button gradasi")),
-        body: Center(
+        resizeToAvoidBottomPadding: false, //permasalahan keyboard overflowed
+        appBar: AppBar(
+          title: Text("Belajar HTTP POST"),
+        ),
+        body: Container(
+          margin: EdgeInsets.fromLTRB(16, 8, 16, 16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              RaisedButton(
-                color: Colors.blueAccent,
-                child: Text("Raise"),
-                shape: StadiumBorder(),
-                onPressed: () {},
-              ),
-              Container(
-                width: 150,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: LinearGradient(
-                      colors: [Colors.pink, Colors.red],
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft),
+              Flexible(
+                flex: 5,
+                child: Stack(
+                  children: [
+                    Card(
+                      margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 25),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text("Test GET & Post"),
+                            ),
+                          ),
+                          Row(children: [
+                            Flexible(
+                                flex: 1,
+                                child: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text("Nama"))),
+                            Flexible(
+                                flex: 2,
+                                child: TextFormField(
+                                    controller: myController_name))
+                          ]),
+                          Row(children: [
+                            Flexible(
+                                flex: 1,
+                                child: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text("Pekerjaan"))),
+                            Flexible(
+                                flex: 2,
+                                child:
+                                    TextFormField(controller: myControllerjob))
+                          ]),
+                          Container(
+                            margin: EdgeInsets.only(top: 20),
+                            child: Row(children: [
+                              Flexible(
+                                  flex: 1,
+                                  child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Text((postResult != null)
+                                          ? postResult.name
+                                          : "Tidak ada data"))),
+                              Flexible(
+                                  flex: 1,
+                                  child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Text((postResult != null)
+                                          ? postResult.job
+                                          : "Tidak ada data")))
+                            ]),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 20),
+                            child: Row(children: [
+                              Flexible(
+                                  flex: 1,
+                                  child: Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Text((userResult != null)
+                                          ? "id : " +
+                                              userResult.id +
+                                              " nama : " +
+                                              userResult.email
+                                          : "Tidak ada data")))
+                            ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            gradient: LinearGradient(
+                                colors: [Colors.red[900], Colors.blue[900]],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft)),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: InkWell(
+                              splashColor: Colors.red.withAlpha(30),
+                              onTap: () {
+                                // String v_nama =  myController_name.text;
+                                // String v_job = myControllerjob.text;
+
+                                // print(v_nama);
+                                PostResult.connectToAPI(myController_name.text,
+                                        myControllerjob.text)
+                                    .then((value) {
+                                  postResult = value;
+                                  logger.d(myController_name.text);
+                                  setState(() {});
+                                });
+                              },
+                              child: Center(
+                                child: Text(
+                                  "Post",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            gradient: LinearGradient(
+                                colors: [Colors.green[900], Colors.yellow[900]],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft)),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: InkWell(
+                              splashColor: Colors.red.withAlpha(30),
+                              onTap: () {
+                                // String v_nama =  myController_name.text;
+                                // String v_job = myControllerjob.text;
+
+                                // print(v_nama);
+                                UserResult.connectToAPI("5").then((value) {
+                                  userResult = value;
+                                  // logger.d();
+                                  setState(() {});
+                                });
+                              },
+                              child: Center(
+                                child: Text(
+                                  "GET",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                child: Material(),
+              ),
+              Spacer(
+                flex: 3,
               )
             ],
           ),
