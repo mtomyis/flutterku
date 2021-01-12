@@ -1,6 +1,7 @@
 // import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutterku/get_all_user_modal.dart';
 import 'package:flutterku/get_user_modal.dart';
 import 'package:flutterku/login_page.dart';
 import 'package:flutterku/post_result_modal.dart';
@@ -570,9 +571,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<Widget> widgets = [];
+
+  _MyAppState() {
+    for (var i = 0; i < 15; i++) {
+      widgets.add(Text(
+        "Data ke" + i.toString(),
+        style: TextStyle(fontSize: 25),
+      ));
+    }
+  }
+
   Logger logger = Logger();
   PostResult postResult = null;
   UserResult userResult = null;
+  AllUser allUser = null;
 
   final myController_name = TextEditingController();
   final myControllerjob = TextEditingController();
@@ -742,11 +755,71 @@ class _MyAppState extends State<MyApp> {
                         ),
                       ),
                     ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            gradient: LinearGradient(
+                                colors: [Colors.red[900], Colors.green[900]],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft)),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: InkWell(
+                              splashColor: Colors.red.withAlpha(30),
+                              onTap: () {
+                                // String v_nama =  myController_name.text;
+                                // String v_job = myControllerjob.text;
+
+                                // print(v_nama);
+                                AllUser.connectToAPI("2").then((allUser) {
+                                  allUser = allUser;
+                                  widgets.clear();
+                                  for (var i = 0; i < allUser.length; i++) {
+                                    widgets.add(Text(
+                                      "Id :" +
+                                          allUser[i].id.toString() +
+                                          " " +
+                                          allUser[i].name.toString(),
+                                      style: TextStyle(fontSize: 25),
+                                    ));
+                                  }
+                                  // logger.d();
+                                  setState(() {});
+                                });
+                              },
+                              child: Center(
+                                child: Text(
+                                  "GET All User",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Spacer(
-                flex: 3,
+              Flexible(
+                flex: 4,
+                child: Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: ListView(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: widgets,
+                      )
+                    ],
+                  ),
+                ),
               )
             ],
           ),
