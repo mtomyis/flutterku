@@ -778,7 +778,7 @@ class _MyAppState extends State<MyApp> {
                                 // print(v_nama);
                                 AllUser.connectToAPI("2").then((allUser) {
                                   allUser = allUser;
-                                  widgets.clear();
+                                  // widgets.clear();
                                   for (var i = 0; i < allUser.length; i++) {
                                     widgets.add(Text(
                                       "Id :" +
